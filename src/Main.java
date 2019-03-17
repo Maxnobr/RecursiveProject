@@ -34,7 +34,7 @@ public class Main {
     //1 + (1/2) - (1/3) + (1/4) - (1/5) ...
     private static double kRecur(int k){
         if(k == 1) return 1;
-        return kRecur(k - 1) + 1.0 / k * (k % 2 == 0 ? 1 : -1);
+        return kRecur(k - 1) + (k % 2 == 0 ? 1.0 : -1.0)/k;
     }
 
     //Write a recursive method that takes a String as its argument
@@ -48,8 +48,7 @@ public class Main {
         String pali = str.replaceAll("[^a-zA-Z]","").toLowerCase();
         System.out.println("pali: '"+str+"' match : "
                 +(pali.charAt(0) == pali.charAt(pali.length()-1)));
-        if(pali.length() <= 1)
-            return true;
+        if(pali.length() <= 1) return true;
         return pali.charAt(0) == pali.charAt(pali.length()-1)
                 && isPalindrome(pali.substring(1,pali.length()-1));
     }
@@ -67,6 +66,7 @@ public class Main {
     //log_of() takes a double, X, between 1.0 and 1000 and returns its logarithm
     //as a double (you can stop when you find logY with |Y-X| < .001).
     static double log_of(double x,double end) {
+        //return 1 + log_of(x/10);
         return (x > end)?(1+log_of(x/10,end))/2:0;
         //return (Math.abs(10 - x*x/10) > end)?(1+log_of(x*x/10,end))/2:0;
         //return (x > 1) ? 1 + log_of(x / 10,end) : 0;
