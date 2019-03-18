@@ -67,9 +67,9 @@ public class Main {
     //as a double (you can stop when you find logY with |Y-X| < .001).
     static double log_of(double x,double end) {
         //return 1 + log_of(x/10);
-        return (x > end)?(1+log_of(x/10,end))/2:0;
+        //return (x > end)?(1+log_of(x/10,end))/2:0;
         //return (Math.abs(10 - x*x/10) > end)?(1+log_of(x*x/10,end))/2:0;
-        //return (x > 1) ? 1 + log_of(x / 10,end) : 0;
+        return (x > 1) ? 1 + log_of(x / 10,end) : 0;
     }
 
     static double log_of(double x) {
