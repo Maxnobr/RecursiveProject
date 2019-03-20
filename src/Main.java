@@ -1,5 +1,4 @@
 public class Main {
-    //Hi Gabe !
 
     public static void main(String[] args) {
 
@@ -19,15 +18,9 @@ public class Main {
                 (isPalindrome("Definitely not a Palindrome yletinifed")?"":"not ")
                 + "a Palindrome!");
 
-        double log = 10;
-        System.out.println("log of "+log+"  = "+log_of(log,1));
+        double log = 9;
+        System.out.println("log of "+log+" = "+log_of(log));
         System.out.println("actual log = "+Math.log10(log));
-
-        //can't figure out the log stuff!
-        for(int x = 0;x < 4;x++)
-            for(int y = 0;y < 4;y++)
-                System.out.println("sqr("+Math.pow(10,x)+"+"+Math.pow(10,y)+") = " +
-                        Math.sqrt(Math.pow(10,x)+Math.pow(10,y)));
     }
 
     //Write a recursive method that takes an int argument k and returns,
@@ -66,21 +59,24 @@ public class Main {
     //
     //log_of() takes a double, X, between 1.0 and 1000 and returns its logarithm
     //as a double (you can stop when you find logY with |Y-X| < .001).
-    static double log_of(double x,double end) {
-        //return 1 + log_of(x/10);
-        //return (x > end)?(1+log_of(x/10,end))/2:0;
-        //return (Math.abs(10 - x*x/10) > end)?(1+log_of(x*x/10,end))/2:0;
-        return (x > 1) ? 1 + log_of(x / 10,end) : 0;
-    }
-
     static double log_of(double x) {
-        return (x > 0.001) ? 1 + log_of(x / 10) : 0;
+        if(x >= 1 && x <= 1000)
+        return logs(x,1,0,1000,3,0.001);
+        System.out.println("Invalid number");
+        return 0;
     }
 
     //logs() prints out numbers and their logarithms in a given range
     //until the difference of the logs is less than a given value.
-    static void logs(int start,int end,double lessVal){
-        for(int i = start;i < end;i++)
-            System.out.println("log of "+i+" = "+log_of(i,lessVal));
+    static double logs(double n,double x,double logX,double y,double logY, double end){
+        double K = Math.sqrt(x*y);
+        double logK = (logX+logY)/2;
+        System.out.println("K:"+K+" logK:"+logK);
+        if(Math.abs(K-n) < end)
+            return logK;
+        if(K > n)
+            return logs(n,x,logX,K,logK,end);
+        else
+            return logs(n,K,logK,y,logY,end);
     }
 }
